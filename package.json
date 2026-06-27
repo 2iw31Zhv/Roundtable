@@ -1,0 +1,16 @@
+{
+  "name": "roundtable",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "A playable software-strategy table game where cards shape AI-built products.",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "check": "node --check server/index.js && node --check server/engine.js && node --check server/rooms.js && node --check server/build.js && node --check public/app.js && node --check public/online.js",
+    "screenshot": "node --experimental-websocket scripts/screenshot.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

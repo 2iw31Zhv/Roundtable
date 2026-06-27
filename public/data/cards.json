@@ -1,0 +1,137 @@
+[
+  {
+    "id": "new-feature",
+    "title": "New Feature",
+    "type": "Product",
+    "target": "self",
+    "cost": 1,
+    "icon": "N",
+    "tone": "#c78b25",
+    "text": "Add one feature to your product — pick from your idea pool or type your own.",
+    "strategy": {
+      "summary": "Commit a concrete feature; it ships on this turn's build.",
+      "bestWhen": "You have an idea worth shipping (from User Feedback or your own).",
+      "tradeoff": "Costs a credit and a card slot, but features are the main way to score.",
+      "tableUse": "Your core scoring card — features only enter the product through it."
+    },
+    "zh": {
+      "title": "新功能",
+      "type": "产品",
+      "text": "为产品添加一个功能——从你的灵感池中选择，或自行输入。",
+      "strategy": {
+        "summary": "确定一个具体功能，它会在本回合构建时交付。",
+        "bestWhen": "当你有值得交付的点子时（来自用户反馈或你自己）。",
+        "tradeoff": "需要一点数和一张手牌，但功能是主要得分来源。",
+        "tableUse": "你的核心得分牌——功能只能通过它进入产品。"
+      }
+    }
+  },
+  {
+    "id": "user-feedback",
+    "title": "User Feedback",
+    "type": "Market",
+    "target": "self",
+    "cost": 1,
+    "icon": "U",
+    "tone": "#167b73",
+    "text": "Improve quality and market pull, then fix onboarding friction.",
+    "strategy": {
+      "summary": "Use customer signal to improve the product rather than adding random scope.",
+      "bestWhen": "Your market score is lagging or the product needs onboarding polish.",
+      "tradeoff": "It helps quality and market pull but does not directly add speed.",
+      "tableUse": "A reliable mid-game card when you need both usability and credibility."
+    },
+    "zh": {
+      "title": "用户反馈",
+      "type": "市场",
+      "text": "提升质量与市场吸引力，并修复上手摩擦。",
+      "strategy": {
+        "summary": "用客户信号改进产品，而不是盲目加需求。",
+        "bestWhen": "市场分落后，或产品需要更顺滑的上手体验时使用。",
+        "tradeoff": "提升质量和市场吸引力，但不会直接增加速度。",
+        "tableUse": "中期稳定牌，适合同时补可用性和可信度。"
+      }
+    }
+  },
+  {
+    "id": "acquire",
+    "title": "Acquire Feature",
+    "type": "Table",
+    "target": "other",
+    "cost": 2,
+    "icon": "A",
+    "tone": "#725ca8",
+    "text": "Pay another player and adapt one of their shipped features.",
+    "strategy": {
+      "summary": "Buy a proven idea instead of inventing every feature yourself.",
+      "bestWhen": "Another product has shipped a feature that fits your roadmap.",
+      "tradeoff": "It costs credits and rewards the target with earned credits.",
+      "tableUse": "Best when adaptation gives you more value than the payment gives your opponent."
+    },
+    "zh": {
+      "title": "收购功能",
+      "type": "牌桌",
+      "text": "付费给另一位玩家，并改用其已交付的一个功能。",
+      "strategy": {
+        "summary": "购买成熟的点子，而不是自己发明每个功能。",
+        "bestWhen": "另一位玩家已经交付了适合你路线图的功能时使用。",
+        "tradeoff": "你要花费点数，同时也会让目标玩家获得收入。",
+        "tableUse": "当改造该功能带来的价值高于付款给对手的收益时最划算。"
+      }
+    }
+  },
+  {
+    "id": "consultant",
+    "title": "Consultant",
+    "type": "Table",
+    "target": "other",
+    "cost": 0,
+    "icon": "K",
+    "tone": "#4c8f4c",
+    "text": "Offer another player a paid consult. If they accept, they pay you credits and you add a feature idea to their product.",
+    "strategy": {
+      "summary": "Sell your expertise to a rival for credits.",
+      "bestWhen": "A player can spare the credits and would value a fresh feature idea.",
+      "tradeoff": "They only pay (and get a feature) if they accept; if they decline, nothing happens.",
+      "tableUse": "Best against a player with credits to spare who will take the deal."
+    },
+    "zh": {
+      "title": "顾问",
+      "type": "牌桌",
+      "text": "向另一位玩家提供有偿咨询。若对方接受，他们付你点数，你则为其产品添加一个功能点子。",
+      "strategy": {
+        "summary": "把你的专业能力卖给对手，换取点数。",
+        "bestWhen": "当对方付得起点数、又乐意获得一个新功能点子时使用。",
+        "tradeoff": "对方接受才会付费并获得功能；若拒绝，则什么都不会发生。",
+        "tableUse": "面对有富余点数、愿意成交的玩家时最划算。"
+      }
+    }
+  },
+  {
+    "id": "cloud-credits",
+    "title": "Cloud Credits",
+    "type": "Resource",
+    "target": "self",
+    "cost": 0,
+    "icon": "+",
+    "tone": "#4c8f4c",
+    "text": "Gain sponsored credits for future automatic builds.",
+    "strategy": {
+      "summary": "Increase your usable AI budget without raising your personal cap.",
+      "bestWhen": "You need more build funding but want to preserve personal spend.",
+      "tradeoff": "It does not improve the product until you spend those credits.",
+      "tableUse": "Best before a high-output turn or when cost pressure is coming."
+    },
+    "zh": {
+      "title": "云额度",
+      "type": "资源",
+      "text": "为后续自动构建获得赞助点数。",
+      "strategy": {
+        "summary": "在不提高个人上限的情况下增加可用 AI 预算。",
+        "bestWhen": "你需要更多构建资金，但想保留个人点数上限时使用。",
+        "tradeoff": "它本身不会改进产品，只有在后续回合消耗点数时才会产生效果。",
+        "tableUse": "适合在高产出回合之前，或成本压力回合即将到来时使用。"
+      }
+    }
+  }
+]

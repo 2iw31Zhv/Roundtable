@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="base" cx="50%" cy="50%" r="72%">
+      <stop offset="0%" stop-color="#1c5a4a"/>
+      <stop offset="46%" stop-color="#143a31"/>
+      <stop offset="100%" stop-color="#0e241f"/>
+    </radialGradient>
+    <radialGradient id="topGlow" cx="50%" cy="0%" r="68%">
+      <stop offset="0%" stop-color="#c78b25" stop-opacity=".42"/>
+      <stop offset="34%" stop-color="#7d6330" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#c78b25" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="centerLift" cx="50%" cy="48%" r="44%">
+      <stop offset="0%" stop-color="#2a7a64" stop-opacity=".36"/>
+      <stop offset="60%" stop-color="#1c5a4a" stop-opacity=".12"/>
+      <stop offset="100%" stop-color="#1c5a4a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="76%">
+      <stop offset="58%" stop-color="#241b27" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#241b27" stop-opacity=".64"/>
+    </radialGradient>
+    <linearGradient id="ringStroke" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#c78b25" stop-opacity=".18"/>
+      <stop offset="44%" stop-color="#e2be70" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#0e241f" stop-opacity=".02"/>
+    </linearGradient>
+    <filter id="felt" x="-8%" y="-8%" width="116%" height="116%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="24" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.08  0 0 0 0 0.20  0 0 0 0 0.17  0 0 0 .23 0" result="grain"/>
+      <feBlend in="SourceGraphic" in2="grain" mode="soft-light"/>
+    </filter>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="32"/>
+    </filter>
+    <path id="club" d="M0-42c-15 0-27 12-27 27 0 5 1 9 4 13-13-7-29 3-29 19 0 13 10 23 23 23 7 0 13-3 17-8-4 12-9 21-17 31h58c-8-10-13-19-17-31 4 5 10 8 17 8 13 0 23-10 23-23 0-16-16-26-29-19 3-4 4-8 4-13 0-15-12-27-27-27z"/>
+    <path id="diamond" d="M0-56 38 0 0 56-38 0z"/>
+    <path id="spade" d="M0-58c-30 33-48 44-48 66 0 16 12 28 28 28 8 0 15-3 20-9-4 14-10 25-19 36h38C10 52 4 41 0 27c5 6 12 9 20 9 16 0 28-12 28-28 0-22-18-33-48-66z"/>
+  </defs>
+
+  <g filter="url(#felt)">
+    <rect width="1600" height="900" fill="url(#base)"/>
+    <rect width="1600" height="900" fill="url(#topGlow)"/>
+    <rect width="1600" height="900" fill="url(#centerLift)"/>
+
+    <g opacity=".72" filter="url(#softBlur)">
+      <ellipse cx="800" cy="410" rx="360" ry="170" fill="#1c5a4a" opacity=".24"/>
+      <ellipse cx="800" cy="145" rx="470" ry="190" fill="#c78b25" opacity=".12"/>
+      <ellipse cx="800" cy="505" rx="250" ry="120" fill="#2f8b71" opacity=".10"/>
+    </g>
+
+    <g fill="none" stroke="url(#ringStroke)" stroke-width="2" opacity=".58">
+      <ellipse cx="800" cy="505" rx="365" ry="194"/>
+      <ellipse cx="800" cy="505" rx="505" ry="272" opacity=".56"/>
+      <ellipse cx="800" cy="505" rx="655" ry="352" opacity=".34"/>
+    </g>
+
+    <g fill="#c78b25" opacity=".045">
+      <use href="#club" transform="translate(248 236) rotate(-18) scale(2.15)"/>
+      <use href="#diamond" transform="translate(1342 250) rotate(14) scale(1.75)"/>
+      <use href="#spade" transform="translate(190 704) rotate(22) scale(1.85)"/>
+      <use href="#club" transform="translate(1418 690) rotate(-24) scale(1.7)"/>
+    </g>
+
+    <g fill="none" stroke="#e0b966" stroke-width="1.5" opacity=".08">
+      <path d="M468 156c153-64 510-69 678 0"/>
+      <path d="M428 758c180 74 562 72 744-4"/>
+      <path d="M104 458c86-86 179-136 298-156"/>
+      <path d="M1198 300c120 21 210 70 298 158"/>
+    </g>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+</svg>
