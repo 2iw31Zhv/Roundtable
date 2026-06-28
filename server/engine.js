@@ -20,12 +20,16 @@ const MAX_ROUNDS = 7;
 export const OUTPUT_TOKENS_PER_CREDIT = 800;
 export const FEATURE_SUGGESTION_CREDIT_COST = 1;
 
+// Flavor banner shown each round — one per round of a 7-round build-to-Demo-Day
+// arc. No mechanical effect; purely atmosphere.
 const ROUND_EVENTS = [
-  { key: "enterprise", title: "Enterprise Buyer", text: "Quality and admin-friendly features are worth more this round." },
-  { key: "consumer", title: "Consumer Trend", text: "Market pull and visual polish are worth more this round." },
-  { key: "cost", title: "Cost Pressure", text: "Remaining credits matter more at the final scoring table." },
-  { key: "platform", title: "Platform Shift", text: "Integrations and resilient architecture get extra credit." },
-  { key: "demo", title: "Demo Day", text: "Progress and shipped features decide most of the room." },
+  { key: "kickoff", title: "Kickoff", text: "The idea is greenlit — start building." },
+  { key: "firstbuild", title: "First Build", text: "Your first features take shape." },
+  { key: "users", title: "Early Users", text: "Early users start trying your product." },
+  { key: "growth", title: "Growth Spurt", text: "Word spreads and the product gains momentum." },
+  { key: "crunch", title: "Crunch Time", text: "Heads down — ship as much as you can." },
+  { key: "polish", title: "Polish", text: "Last refinements before the big reveal." },
+  { key: "demo", title: "Demo Day", text: "Show the room what you built." },
 ];
 
 const STARTER_IDEAS = [
