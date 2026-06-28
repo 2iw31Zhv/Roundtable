@@ -640,6 +640,14 @@ export function cancelConsult(game) {
   if (!offer) return null;
   const client = playerById(game, offer.toId);
   const consultant = playerById(game, offer.fromId);
+  // If the client already paid (the offer was accepted) but the consultant never
+  // delivered the feature, refund the client and reclaim the fee from the consultant.
+  if (offer.stage === "awaiting-feedback" && client && consultant) {
+    grantCredits(client, offer.price);
+    grantCredits(consultant, -offer.price);
+    clampPlayer(client);
+    clampPlayer(consultant);
+  }
   addLog(game, "log.consultDeclined", { name: client?.name || "", consultant: consultant?.name || "" });
   game.pendingConsult = null;
   return offer.fromId;

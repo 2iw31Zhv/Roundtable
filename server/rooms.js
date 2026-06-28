@@ -359,7 +359,7 @@ function armConsultTimeout(room, lang) {
       broadcast(room);
       finishTurn(room, fromId, lang);
     }
-  }, 30000);
+  }, 5 * 60 * 1000); // 5 minutes — ample time to accept/decline and to type the feature
   room.consultTimer.unref?.();
 }
 
