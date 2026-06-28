@@ -158,35 +158,42 @@ function instantiate(template) {
   return { ...template, instanceId: randomUUID() };
 }
 
-function makeDealer() {
-  return { deck: shuffle(CARD_LIBRARY) };
-}
+// Relative draw frequency per card. New Feature is the most common (it's the
+// build engine); Acquire is the rarest, tuned so it shows up roughly twice per
+// 7-round game across the table. Every draw — the weighted opening slots and
+// every replacement — uses these weights.
+const CARD_WEIGHTS = {
+  "new-feature": 8,
+  "user-feedback": 5,
+  "cloud-credits": 5,
+  consultant: 4,
+  acquire: 2,
+};
+const WEIGHT_TOTAL = CARD_LIBRARY.reduce((sum, card) => sum + (CARD_WEIGHTS[card.id] || 1), 0);
 
-function dealCard(dealer) {
-  if (!dealer.deck.length) dealer.deck = shuffle(CARD_LIBRARY);
-  return instantiate(dealer.deck.pop());
-}
-
-function dealHand(dealer, count = HAND_SIZE) {
-  return Array.from({ length: count }, () => dealCard(dealer));
-}
-
-// Deal a starting hand that always contains at least one New Feature card (still
-// a random card otherwise), so a player is never stuck unable to ship a feature.
-function dealStartingHand(dealer) {
-  const hand = dealHand(dealer);
-  if (!hand.some((card) => card.id === "new-feature")) {
-    hand[Math.floor(Math.random() * hand.length)] = makeNewFeatureCard();
+function weightedCard() {
+  let roll = Math.random() * WEIGHT_TOTAL;
+  for (const card of CARD_LIBRARY) {
+    roll -= CARD_WEIGHTS[card.id] || 1;
+    if (roll < 0) return instantiate(card);
   }
-  return hand;
+  return instantiate(CARD_LIBRARY[CARD_LIBRARY.length - 1]);
 }
 
 function makeNewFeatureCard() {
   return instantiate(CARD_LIBRARY.find((card) => card.id === "new-feature"));
 }
 
+// Opening hand: one guaranteed New Feature (so you can always ship) plus the rest
+// drawn by weight, shuffled so New Feature isn't always first.
+function dealStartingHand() {
+  const hand = [makeNewFeatureCard()];
+  for (let i = 1; i < HAND_SIZE; i += 1) hand.push(weightedCard());
+  return shuffle(hand);
+}
+
 function drawCard() {
-  return instantiate(CARD_LIBRARY[Math.floor(Math.random() * CARD_LIBRARY.length)]);
+  return weightedCard();
 }
 
 // ---- credits -----------------------------------------------------------------
@@ -249,8 +256,7 @@ function clampPlayer(player) {
 // ---- game lifecycle ----------------------------------------------------------
 
 export function createGame(seats) {
-  const dealer = makeDealer();
-  const players = seats.slice(0, MAX_PLAYERS).map((seat, index) => createPlayer(seat, index, dealer));
+  const players = seats.slice(0, MAX_PLAYERS).map((seat, index) => createPlayer(seat, index));
   const game = {
     phase: "playing",
     round: 1,
@@ -269,7 +275,7 @@ export function createGame(seats) {
   return game;
 }
 
-function createPlayer(seat, index, dealer) {
+function createPlayer(seat, index) {
   const product = productFromIdea(seat.product, index);
   const player = {
     id: seat.id || `p${index + 1}`,
@@ -291,7 +297,7 @@ function createPlayer(seat, index, dealer) {
     backlog: [...product.backlog],
     featurePool: [],
     polishCount: 0,
-    hand: dealStartingHand(dealer),
+    hand: dealStartingHand(),
     artifact: null,
     score: 0,
   };
