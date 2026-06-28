@@ -859,7 +859,7 @@ function startGame(players) {
   state = {
     phase: "playing",
     round: 1,
-    maxRounds: 5,
+    maxRounds: 7,
     currentPlayerIndex: 0,
     selectedCardId: null,
     selectedTargetId: null,

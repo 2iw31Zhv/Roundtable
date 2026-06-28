@@ -16,7 +16,7 @@ export const MIN_PLAYERS = 2;
 
 const COLORS = ["#167b73", "#be4b45", "#c78b25", "#725ca8", "#4f7fa8", "#8a6f2a"];
 const HAND_SIZE = 5;
-const MAX_ROUNDS = 5;
+const MAX_ROUNDS = 7;
 export const OUTPUT_TOKENS_PER_CREDIT = 800;
 export const FEATURE_SUGGESTION_CREDIT_COST = 1;
 
@@ -543,6 +543,10 @@ function applyCard(game, card, actor, target, options = {}) {
         game.turn.featureToShip = `Adapt ${taken.name}`;
         actor.market += 1;
         grantCredits(target, 2);
+        // The victim's built app no longer matches their features, so drop it.
+        // It rebuilds on their next New Feature turn (or stays gone if they have
+        // nothing left to ship).
+        target.artifact = null;
         addLog(game, "log.acquire", { name: actor.name, target: target.name });
       } else {
         addLog(game, "log.acquireEmpty", { name: actor.name, target: target.name });
@@ -675,7 +679,7 @@ function publicPlayer(player, isViewer) {
     backlogCount: player.backlog.length,
     latestFeature: player.features.length ? player.features[player.features.length - 1].name : null,
     score: player.score,
-    appReady: Boolean(player.artifact),
+    appReady: Boolean(player.artifact) && player.features.length > 0,
     award: player.award || null,
   };
   if (isViewer) {
