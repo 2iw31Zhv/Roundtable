@@ -72,7 +72,10 @@ export async function suggestFeatures(payload = {}) {
 async function buildWithAi(payload) {
   const baseUrl = process.env.AI_API_BASE || "https://api.openai.com/v1";
   const model = process.env.AI_MODEL || "gpt-4o-mini";
-  const maxTokens = Math.max(modelTokenBudget(payload.tokenBudget, 8000), 6000);
+  // Real working apps routinely run 6-12k tokens; a tight cap truncates them
+  // before </html> and the build silently falls back to the template. Give them
+  // plenty of room (the model still stops early when the app is done).
+  const maxTokens = Math.max(modelTokenBudget(payload.tokenBudget, 12000), 12000);
   const outputLanguage = normalizedLanguage(payload.language) === "zh" ? "Simplified Chinese" : "English";
   // A local model server (Ollama, LM Studio, llama.cpp) usually needs no key;
   // only attach Authorization when the host actually provided one.
@@ -576,7 +579,15 @@ function extractHtmlDocument(text) {
   const fence = text.match(/```(?:html)?\s*([\s\S]*?)```/i);
   const body = fence ? fence[1] : text;
   const match = body.match(/<!doctype html[\s\S]*<\/html>/i) || body.match(/<html[\s\S]*<\/html>/i);
-  return match ? match[0] : null;
+  if (match) return match[0];
+  // Truncated output (cut off before </html>): salvage the partial document as a
+  // real app instead of dropping to the template — better a clipped product than
+  // the wrong page.
+  const start = body.search(/<!doctype html|<html[\s>]/i);
+  if (start !== -1 && body.length - start > 400) {
+    return `${body.slice(start).replace(/```\s*$/i, "").trimEnd()}\n</body></html>`;
+  }
+  return null;
 }
 
 // Encode a string as a safe JS string literal for embedding inside <script>.

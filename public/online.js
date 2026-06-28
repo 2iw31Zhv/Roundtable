@@ -160,6 +160,7 @@ const STR = {
     playAgain: "Play again",
     openApp: "Open app",
     noApp: "No app shipped",
+    appBuilding: "App still building…",
     language: "Language",
     noPrototype: "No prototype to download yet.",
     requestFailed: "Request failed ({status}).",
@@ -316,6 +317,7 @@ const STR = {
     playAgain: "再来一局",
     openApp: "打开应用",
     noApp: "未交付应用",
+    appBuilding: "应用构建中…",
     language: "语言",
     noPrototype: "还没有可下载的原型。",
     requestFailed: "请求失败（{status}）。",
@@ -1652,7 +1654,7 @@ function renderFinished() {
                   <div class="leader-row2">
                     <img class="award-badge" src="./assets/awards/${player.award || "steady"}.png" alt="" decoding="async" />
                     <div class="award-title">${escapeHtml(t("award." + (player.award || "steady")))}</div>
-                    ${player.appReady ? `<button class="button slim secondary" data-action="open-app" data-id="${player.id}">${escapeHtml(t("openApp"))}</button>` : `<span class="no-app">${escapeHtml(t("noApp"))}</span>`}
+                    ${player.appReady ? `<button class="button slim secondary" data-action="open-app" data-id="${player.id}">${escapeHtml(t("openApp"))}</button>` : `<span class="no-app">${escapeHtml(player.shipped > 0 ? t("appBuilding") : t("noApp"))}</span>`}
                   </div>
                   <p class="leader-line">${escapeHtml(t("leaderLine", { shipped: player.shipped, progress: player.progress, credits: player.credits }))}</p>
                 </div>
