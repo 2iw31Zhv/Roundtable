@@ -1487,21 +1487,27 @@ function renderTurnSpend(me, yourTurn) {
 function renderFeatureChooser(card, yourTurn) {
   if (!yourTurn || !cardNeedsFeatureChoice(card)) return "";
   const suggestions = featureSuggestions(card);
-  if ((!ui.featurePick || !suggestions.includes(ui.featurePick)) && suggestions[0]) ui.featurePick = suggestions[0];
+  const hasSuggestions = suggestions.length > 0;
+  // Only keep a picked value while there are real ideas to pick from. With an
+  // empty pool we drop the dropdown entirely (New Feature becomes just a text
+  // box); the Play button reads the typed value, so it keeps working.
+  if (!hasSuggestions) ui.featurePick = "";
+  else if (!ui.featurePick || !suggestions.includes(ui.featurePick)) ui.featurePick = suggestions[0];
   // Only New Feature lets you type your own; Acquire can only pick an opponent's feature.
   const allowType = card.id === "new-feature";
   return `
     <div class="field feature-choice">
-      <label for="feature-pick">${escapeHtml(t("featureChoice"))}</label>
+      <label for="${allowType ? "feature-text" : "feature-pick"}">${escapeHtml(t("featureChoice"))}</label>
       <div class="feature-pick-row">
-        <select id="feature-pick" ${suggestions.length ? "" : "disabled"}>
-          ${
-            suggestions.length
-              ? suggestions.map((feature) => `<option value="${escapeAttribute(feature)}" ${feature === ui.featurePick ? "selected" : ""}>${escapeHtml(featureText(feature))}</option>`).join("")
-              : `<option value="">${escapeHtml(card.id === "acquire" ? t("nothingToAcquire") : t("noIdeasYet"))}</option>`
-          }
-        </select>
+        ${
+          hasSuggestions
+            ? `<select id="feature-pick">${suggestions
+                .map((feature) => `<option value="${escapeAttribute(feature)}" ${feature === ui.featurePick ? "selected" : ""}>${escapeHtml(featureText(feature))}</option>`)
+                .join("")}</select>`
+            : ""
+        }
         ${allowType ? `<input id="feature-text" class="feature-input" value="${escapeAttribute(ui.featureText)}" maxlength="80" placeholder="${escapeAttribute(t("featurePlaceholder"))}" autocomplete="off" />` : ""}
+        ${!hasSuggestions && !allowType ? `<span class="no-ideas-note" style="color: var(--muted); font-size: 0.85rem;">${escapeHtml(t("nothingToAcquire"))}</span>` : ""}
       </div>
     </div>
   `;
