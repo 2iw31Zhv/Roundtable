@@ -1,109 +1,109 @@
-# Roundtable
+# Roundtable（圆桌）
 
-*English · [中文](README.zh.md)*
+*[English](README.en.md) · 中文*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Roundtable** is a browser-based table game about building software products with AI. Two to four players each name a product they want to build, draw a hand of strategy cards, and race to ship the most compelling product by Demo Day. Ship a feature and the host's AI builds it into a **real, working phone app** you can open and use.
+**Roundtable** 是一款在浏览器里玩的桌游，主题是「用 AI 做软件产品」。2 到 4 名玩家各自起一个想做的产品名，抽一手策略卡牌，比拼谁能在「演示日（Demo Day）」交付出最有说服力的产品。每交付一个功能，房主端的 AI 就会把它构建成一个**真实可用的手机 App**，可以直接打开使用。
 
-It plays like a card game, not a form: opponents sit across the table holding face-down hands, a shared board tracks every product's progress, and a running log narrates what just happened.
+它的体验像一局牌局，而不是一张表单：对手坐在桌子对面、手里攥着扣着的牌，中间一块共享牌桌实时显示每个产品的进度，旁边的日志讲述刚刚发生了什么。
 
-Play it **online** — one person hosts, everyone else joins from their own device with a private hand using a short room code — or **pass & play** on a single screen.
+可以**联机**玩——一人开房，其他人用 5 位房间号在各自的手机上加入、各看各的手牌——也可以在同一块屏幕上**轮流传着玩**。
 
-![Roundtable game board](docs/screenshot.png)
+![Roundtable 牌桌](docs/screenshot.zh.png)
 
-## Highlights
+## 亮点
 
-- **Play online together.** Host a game, share a 5-character code, and friends join from anywhere on their own devices. The server is authoritative and keeps each player's hand private; the board updates live over lightweight polling that survives any tunnel or proxy.
-- **Type any product.** Product ideas are free text — a drawing app (`画图`), a finance tracker, a flashcard tutor, anything. No preset menus; short Chinese ideas work too.
-- **A real card table.** Opponents show fanned face-down cards; your hand sits face-up at the bottom; tap a card to pop it up enlarged with its full description before you play.
-- **Ship into a real app.** Play the **New Feature** card to add a concrete feature; ending that turn builds your accumulated features into a genuinely working, self-contained phone app — a real drawing canvas, real flashcards — hosted live so anyone can open it.
-- **Founder-archetype awards.** Demo Day crowns each player with a tongue-in-cheek archetype based on how they played — *The Machine*, *Cashed Out*, *The Conservative*… — each with its own card-style badge.
-- **Data-driven cards.** Card rules, text, and art are defined in data and assets, so the deck is easy to extend.
+- **一起联机玩。** 开一局游戏，分享 5 位房间号，朋友们就能在世界各地用自己的设备加入。服务器是权威方，每个人的手牌都对别人保密；牌桌通过轻量轮询实时更新，可以穿透任何隧道或代理。
+- **任意输入产品。** 产品创意是自由文本——画图、记账、单词卡，什么都行。没有预设菜单；短中文创意（如「画图」）也支持。
+- **真正的牌桌。** 对手展示成扇形的扣牌；你的手牌在底部正面朝上；点一张牌它会**放大弹出**，连同完整说明一起展示，方便你看清再出牌。
+- **交付成真实 App。** 打出**新功能**卡来添加一个具体功能；在这一回合结束时，系统会把你已积累的功能构建成一个真正能用、自包含的手机 App——真的画板、真的卡片——并实时托管，任何人都能打开。
+- **创始人称号。** 演示日会根据你的打法，给每位玩家颁发一个略带调侃的称号——*卷王*、*套现离场*、*保守派*……每个都配有与卡牌同款风格的徽章插画。
+- **数据驱动的卡牌。** 卡牌规则、文案和美术都定义在数据与资源文件里，牌库很容易扩展。
 
-## What you build
+## 你会做出什么
 
-A turn on which you ship a feature compiles your product into a **self-contained phone app** — a single HTML file that runs as a real, usable app (canvas, forms, local storage), styled like a native mobile screen and adapting to **iOS or Android**. The host serves every player's app live, so you just tap **Open app** to use or share it — no download needed.
+任何一个「交付了功能」的回合，都会把你的产品编译成一个**自包含的手机 App**——一个单文件 HTML，作为真正可用的应用运行（画布、表单、本地存储），外观仿原生移动界面，并自动适配 **iOS 或 Android**。房主会实时托管每位玩家的 App，所以你只需点**打开应用**即可使用或分享，无需下载。
 
-![A built product running as a phone app](docs/app-preview.png)
+![构建出的产品作为手机 App 运行](docs/app-preview.zh.png)
 
-## How to play
+## 怎么玩
 
-1. The host opens the app, enters a name and a specific product idea, and creates a game. Everyone else opens the same URL and joins with the room code (or play pass & play on one device). Generic placeholders and Roundtable-themed ideas are rejected.
-2. In the lobby the host starts the game — each player is dealt a private hand of five cards, always including at least one **New Feature**.
-3. On your turn, play one card (tap to enlarge it, then **Play card**), choosing a target where the card needs one.
-4. Ending a turn on which you committed a feature spends some credits and **builds your app** in the background. A turn with only a strategy card — or no card — doesn't build.
-5. After seven rounds, **Demo Day** scores everyone, awards each player a founder archetype, and serves every finished app.
+1. 房主打开应用，填写昵称和一个具体的产品创意，创建游戏。其他人打开同一网址、用房间号加入（或在一台设备上轮流玩）。泛泛的占位词和「和 Roundtable 自身有关」的创意会被拒绝。
+2. 在大厅里房主开始游戏——每位玩家发到 5 张私密手牌，且**必有至少一张「新功能」**。
+3. 轮到你时，打出一张牌（点击放大，再点**出牌**），需要目标的卡牌请选择目标。
+4. 如果这一回合你提交了一个功能，结束回合会花费一些点数并在后台**构建你的 App**。只打策略牌、或不出牌的回合不会触发构建。
+5. 七个回合后进入**演示日**：为所有人结算分数、颁发创始人称号，并托管每个做好的 App。
 
-## The deck
+## 牌库
 
-Five cards, defined in `public/data/cards.json` with bilingual text and matching art in `public/assets/cards/`.
+共 5 张牌，定义在 `public/data/cards.json`（含中英文案），美术在 `public/assets/cards/`。
 
-| Card | Cost | Target | Effect |
+| 卡牌 | 费用 | 目标 | 效果 |
 | --- | --- | --- | --- |
-| **New Feature** (新功能) | 1 | self | Add one concrete feature — type it or pick from your idea pool. The only way to grow your app, and guaranteed in your opening hand. |
-| **User Feedback** (用户反馈) | 1 | self | Adds one product-relevant idea to your pool for a later New Feature. |
-| **Acquire Feature** (收购功能) | 2 | other | Steal a shipped feature from another player (it leaves their product). |
-| **Consultant** (顾问) | 0 | other | Offer a rival a paid consult; if they accept, they pay you and you add a feature idea to *their* product. |
-| **Cloud Credits** (云额度) | 0 | self | Bank sponsored credits for future builds. |
+| **新功能** (New Feature) | 1 | 自己 | 添加一个具体功能——自行输入，或从灵感池中选取。这是壮大 App 的唯一途径，且必定出现在开局手牌里。 |
+| **用户反馈** (User Feedback) | 1 | 自己 | 为你的灵感池添加一个与产品相关的功能点子，供之后的「新功能」使用。 |
+| **收购功能** (Acquire Feature) | 2 | 他人 | 从另一位玩家那里夺取一个已交付的功能（它会从对方产品中消失）。 |
+| **顾问** (Consultant) | 0 | 他人 | 向对手提供有偿咨询；若对方接受，他们付你点数，你则为**他们的**产品添加一个功能点子。 |
+| **云额度** (Cloud Credits) | 0 | 自己 | 为后续构建储备赞助点数。 |
 
-## Stats & scoring
+## 状态与计分
 
-Each product shows three numbers on the board:
+每个产品在牌桌上显示三个数字：
 
-- **Progress** (0–100%) — climbs only when you build. Each build adds `clamp(20 + credits-spent × 5, 6, 45)`.
-- **Shipped** — features in your product.
-- **Credits** — leftover spending power (`cap − spent + earned`).
+- **进度**（0–100%）——只有在构建时才上升。每次构建增加 `clamp(20 + 投入点数 × 5, 6, 45)`。
+- **已交付**——产品中的功能数量。
+- **点数**——剩余的可支配点数（`上限 − 已花 + 赚取`）。
 
-At Demo Day:
+演示日：
 
 ```
-score = progress + shipped × 8 + min(10, leftover credits)
+得分 = 进度 + 已交付 × 8 + min(10, 剩余点数)
 ```
 
-…and every player earns a **founder archetype** from those same stats:
+……并根据同样这几项给每位玩家颁发一个**创始人称号**：
 
-| Archetype | Earned by |
+| 称号 | 获得条件 |
 | --- | --- |
-| **The Machine** (卷王) | shipped the most features |
-| **The Finisher** (收官大师) | reached 100% progress |
-| **All-In** (孤注一掷) | shipped, then spent every last credit |
-| **Lean Founder** (精打细算) | shipped while keeping ≥ half the budget |
-| **Steady Builder** (稳健创业者) | the balanced middle ground |
-| **The Conservative** (保守派) | shipped nothing, sat on the starting budget |
-| **Cashed Out** (套现离场) | shipped nothing, yet *earned* past the starting budget |
+| **卷王** (The Machine) | 交付功能最多 |
+| **收官大师** (The Finisher) | 进度达到 100% |
+| **孤注一掷** (All-In) | 有交付，且把点数花得一干二净 |
+| **精打细算** (Lean Founder) | 有交付，同时保留了至少一半预算 |
+| **稳健创业者** (Steady Builder) | 均衡的中间派 |
+| **保守派** (The Conservative) | 什么都没交付，守着开局预算 |
+| **套现离场** (Cashed Out) | 什么都没交付，却**赚到**超过了开局预算 |
 
-![Demo Day results with founder archetypes](docs/demo-day.png)
+![带创始人称号的演示日结算](docs/demo-day.zh.png)
 
-### Currency: AI credits
+### 货币：AI 点数
 
-- **Credit cap** — your starting budget (default 16) and the most you'll spend.
-- **Earned credits** — income from Consultant payouts and Cloud Credits; spent before your cap so you can keep building without raising it.
-- **Turn spend** — a build spends an even share of your remaining credits over the remaining rounds.
-- **AI token budget** — 1 credit maps to an 800-token model output cap; a build's app gets `turn spend × 800` tokens. Paid AI feature suggestions cost 1 credit.
+- **点数上限**——你的初始预算（默认 16），也是你愿意花的上限。
+- **赚取点数**——来自顾问的报酬和云额度卡；会先于你的上限被花掉，让你不抬高上限也能继续构建。
+- **回合花费**——一次构建会把你剩余的点数，按剩余回合数平均分摊后花掉一份。
+- **AI 令牌预算**——1 点数对应 800 个模型输出令牌上限；一次构建的 App 可用 `回合花费 × 800` 个令牌。付费的 AI 功能建议每次花费 1 点数。
 
-## Run
+## 运行
 
-Requires Node.js 20+.
+需要 Node.js 20+。
 
 ```sh
 npm start
 ```
 
-Then open the printed URL (defaults to <http://localhost:5173>).
+然后打开终端打印的网址（默认 <http://localhost:5173>）。
 
-## AI builder (optional)
+## AI 构建器（可选）
 
-Every feature build is produced by the **host's** configured model — players never need a key, because the build runs on the host's server. With nothing configured, a built-in **offline builder** produces a basic app (no key, no setup). To build richer, genuinely working apps, copy `.env.example` to `.env` and set one OpenAI-compatible source:
+每次功能构建都由**房主**配置的模型生成——玩家无需任何密钥，因为构建跑在房主的服务器上。什么都不配置时，内置的**离线构建器**会生成一个基础 App（无需密钥、零配置）。想构建更丰富、真正能用的 App，把 `.env.example` 复制为 `.env`，并设置一个 OpenAI 兼容的来源：
 
-**Local model** — free, private, no key (Ollama / LM Studio / llama.cpp):
+**本地模型**——免费、私密、无需密钥（Ollama / LM Studio / llama.cpp）：
 
 ```sh
 AI_API_BASE=http://localhost:11434/v1
 AI_MODEL=qwen2.5-coder:7b
 ```
 
-**Cloud key** — any OpenAI-compatible provider; the host pays for builds (example: Claude via Anthropic's OpenAI-compatible endpoint):
+**云端密钥**——任意 OpenAI 兼容服务，由房主付费（示例：通过 Anthropic 的 OpenAI 兼容端点调用 Claude）：
 
 ```sh
 AI_API_BASE=https://api.anthropic.com/v1
@@ -111,61 +111,61 @@ AI_MODEL=claude-sonnet-4-5
 AI_API_KEY=sk-ant-...
 ```
 
-Setting `AI_API_BASE`/`AI_API_KEY` switches the AI builder on; the server prints the active mode on startup and `GET /api/health` reports it as `aiMode`.
+设置 `AI_API_BASE`/`AI_API_KEY` 即可开启 AI 构建器；服务器启动时会打印当前模式，`GET /api/health` 也会以 `aiMode` 字段报告。
 
-## Hosting and joining remotely
+## 远程开房与加入
 
-One machine runs the server with `npm start`; everyone else plays in their browser against it. There are no accounts — a player is authenticated by the **room code**, a per-game shared secret, so you only need to get the URL and the code to the people you invite.
+一台机器用 `npm start` 跑服务器，其他人在浏览器里连进来对战。没有账号——玩家靠**房间号**这一「每局共享的口令」来认证，所以你只需把网址和房间号给到你邀请的人即可。
 
-1. **Host a game.** Start the server, create a game, and share the 5-character room code (for example `EDLE7`) with the players you want.
-2. **Make the server reachable.** On the same Wi-Fi, share your machine's `http://<lan-ip>:5173`. Over the internet, put a tunnel in front of it and share that URL instead:
+1. **开一局。** 启动服务器、创建游戏，把 5 位房间号（例如 `EDLE7`）发给你想邀请的玩家。
+2. **让服务器可达。** 同一 Wi-Fi 下，分享你机器的 `http://<局域网IP>:5173`。要跨互联网玩，就在本地服务器前加一条隧道，改为分享隧道网址：
 
    ```sh
-   cloudflared tunnel --url http://localhost:5173   # Cloudflare quick tunnel
-   # or
+   cloudflared tunnel --url http://localhost:5173   # Cloudflare 快速隧道
+   # 或
    ngrok http 5173
    ```
 
-   Both print an `https://…` URL and avoid opening router ports. Send players that URL **and** the room code.
-3. **Join.** A remote player opens the URL, enters a name and product idea, types the room code, and joins. The host sees them appear in the lobby and can remove anyone before starting.
+   两者都会打印一个 `https://…` 网址，且无需在路由器上开放端口。把该网址**和**房间号一起发给玩家。
+3. **加入。** 远程玩家打开网址、填写昵称和产品创意、输入房间号即可加入。房主会在大厅看到他们出现，并可在开始前移除任何人。
 
-A shared invite link can prefill the code, name, and product (`?code=EDLE7&name=…&product=…`); the link's code always wins over a stale saved session, so a fresh invite never drops you back into an old room.
+分享邀请链接可预填房间号、昵称和产品（`?code=EDLE7&name=…&product=…`）；链接里的房间号始终优先于本地的旧会话，所以新邀请绝不会把你又带回旧房间。
 
-**Security model.** The room code is the shared secret — treat it like a password. Codes come from a large random space and joins are rate-limited per connection, so they can't be practically guessed. Only the host can start or kick. Games live in memory only and are dropped after a few idle hours; submitted text is length-limited and sanitized. This is built for friendly games among people you invite, not as a hardened public service — only share a tunnel URL with players you trust, and stop the tunnel when you're done.
+**安全模型。** 房间号就是共享口令——请当作密码对待。房间号来自很大的随机空间，且每个连接的加入尝试都有限流，因此基本无法被猜出。只有房主能开始或踢人。游戏只存在内存中，闲置数小时后即被丢弃；提交的文本有长度限制并经过清洗。它面向你邀请的熟人之间的友好对局，而非加固过的公共服务——只把隧道网址分享给你信任的玩家，玩完就关掉隧道。
 
-## Project structure
+## 项目结构
 
 ```
-public/            Static client served to the browser
-  index.html         Online entry (home / lobby / live table)
-  online.js          Online client: host/join, lobby, polling-driven table
-  local.html         Single-device pass & play entry
-  app.js             Pass & play game logic and rendering
-  styles.css         Home, table, card, lobby, results, and responsive styling
-  data/cards.json    Card definitions and bilingual strategy text
-  assets/cards/      Card art (one PNG per card id)
-  assets/awards/     Founder-archetype badge art
+public/            提供给浏览器的静态客户端
+  index.html         联机入口（首页 / 大厅 / 实时牌桌）
+  online.js          联机客户端：开房/加入、大厅、轮询驱动的牌桌
+  local.html         单设备「轮流传玩」入口
+  app.js             轮流传玩的游戏逻辑与渲染
+  styles.css         首页、牌桌、卡牌、大厅、结算及响应式样式
+  data/cards.json    卡牌定义与中英文策略文案
+  assets/cards/      卡牌美术（每张牌一个 PNG）
+  assets/awards/     创始人称号徽章美术
 server/
-  index.js           HTTP server: static files (gzip), room routes, hosted apps
-  engine.js          Authoritative game engine, scoring, archetype awards, redacted views
-  rooms.js           In-memory rooms, join codes, polling/presence, build orchestration
-  build.js           AI / offline phone-app builder and feature suggestions
+  index.js           HTTP 服务器：静态文件（gzip）、房间路由、托管 App
+  engine.js          权威游戏引擎、计分、称号评定、按玩家脱敏的视图
+  rooms.js           内存中的房间、房间号、轮询/在线状态、构建编排
+  build.js           AI / 离线手机 App 构建器与功能建议
 scripts/
-  screenshot.mjs     Regenerates the README board screenshot
-docs/                Screenshots used in this README
+  screenshot.mjs     重新生成 README 里的牌桌截图
+docs/                本 README 使用的截图
 ```
 
-The online game is server-authoritative: clients send intents (play card, end turn) and render a redacted view fetched by short polling — robust through tunnels that buffer Server-Sent Events — so a player only ever receives their own hand.
+联机游戏是服务器权威的：客户端发送意图（出牌、结束回合），渲染一份通过短轮询拉取的脱敏视图——这比会被隧道缓冲的 Server-Sent Events 更稳——所以玩家永远只会收到自己的手牌。
 
-## Development
+## 开发
 
 ```sh
-npm run check        # syntax-check the client and server
-npm run screenshot   # regenerate docs/screenshot.png from the live app
+npm run check        # 对客户端与服务器做语法检查
+npm run screenshot   # 从运行中的应用重新生成 docs/screenshot.png
 ```
 
-`npm run screenshot` boots the server, drives a short demo game in headless Chrome, and captures the board. It needs Google Chrome or Chromium installed; set `CHROME_PATH` if it lives in a non-standard location.
+`npm run screenshot` 会启动服务器，在无头 Chrome 中驱动一局简短的演示对局并截取牌桌。它需要安装 Google Chrome 或 Chromium；若安装在非标准位置，请设置 `CHROME_PATH`。
 
-## License
+## 许可证
 
-Released under the [MIT License](LICENSE). © 2026 Ziwei Zhu.
+基于 [MIT 许可证](LICENSE) 发布。© 2026 Ziwei Zhu。
