@@ -33,7 +33,7 @@ A turn on which you ship a feature compiles your product into a **self-contained
 2. In the lobby the host starts the game — each player is dealt a private hand of five cards, always including at least one **New Feature**.
 3. On your turn, play one card (tap to enlarge it, then **Play card**), choosing a target where the card needs one.
 4. Ending a turn on which you committed a feature spends some credits and **builds your app** in the background. A turn with only a strategy card — or no card — doesn't build.
-5. After five rounds, **Demo Day** scores everyone, awards each player a founder archetype, and serves every finished app.
+5. After seven rounds, **Demo Day** scores everyone, awards each player a founder archetype, and serves every finished app.
 
 ## The deck
 
